@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tarefa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Editar Tarefa</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <label>Título:</label>
+        <input type="text" name="titulo" value="{{ tarefa.titulo }}" required>
+
+        <label>Descrição:</label>
+        <textarea name="descricao">{{ tarefa.descricao }}</textarea>
+
+        <label>Data:</label>
+        <input type="date" name="data" value="{{ tarefa.data }}">
+
+        <label>Imagem:</label>
+        <input type="file" name="imagem">
+
+        {% if tarefa.imagem %}
+        <p>Imagem atual:</p>
+        <img src="{{ url_for('static', filename='img/' + tarefa.imagem) }}" class="foto">
+        {% endif %}
+
+        <button type="submit" class="btn">Salvar</button>
+        <a href="/" class="btn">Voltar</a>
+    </form>
+
+    
+</div>
+
+</body>
+</html>

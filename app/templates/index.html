@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <div class="top-bar">
+            <form method="GET" action="/">
+                <input type="text" name="busca" id="busca" placeholder="Buscar tarefa..." onkeyup="filtrar()">
+            </form>
+
+            <a class="btn" href="/adicionar">Adicionar Tarefa</a>
+        </div>
+
+        <div class="filtros">
+            <a href="/" class="filtro-btn">Todas</a>
+            <a href="/?filtro=concluidas" class="filtro-btn">Concluídas</a>
+            <a href="/?filtro=pendentes" class="filtro-btn">Pendentes</a>
+        </div>
+
+        <div id="lista">
+            {% for tarefa in tarefas %}
+            <div class="tarefa">
+
+                <div class="info">
+                    <h3 class="titulo">{{ tarefa.titulo }}</h3>
+                    <p>{{ tarefa.descricao }}</p>
+                    {% if tarefa.data %}
+                    <p>Data: {{ tarefa.data.strftime("%d/%m/%Y") }}</p>
+                    {% endif %}
+
+                    {% if tarefa.concluida %}
+                    <span class="concluida">✔ Concluída</span>
+                    {% endif %}
+                </div>
+
+                {% if tarefa.imagem %}
+                <img src="{{ url_for('static', filename='img/' + tarefa.imagem) }}" class="foto">
+                {% endif %}
+
+                <div class="acoes">
+
+                    {% if not tarefa.concluida %}
+                    <a href="/concluir/{{ tarefa.id }}" class="concluir">Concluir</a>
+                    {% else %}
+                    <span class="concluido">✔ Concluída</span>
+                    {% endif %}
+
+                    <a href="/editar/{{ tarefa.id }}" class="editar">Editar</a>
+
+                    <a href="/remover/{{ tarefa.id }}" class="remover">Remover</a>
+                </div>
+
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+
+</html>
