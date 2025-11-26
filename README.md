@@ -8,7 +8,7 @@ A aplicação permite adiconar, listar, editar e excluir tarefas, mantendo persi
 
 ### 🖼️ Prévia do Projeto
 
-<img width="1196" height="443" alt="image" src="https://github.com/user-attachments/assets/3e626d25-30cc-4076-8bf0-42e64a32a250" />
+<img width="1196" height="443" alt="image" src="https://github.com/user-attachments/assets/3fd3ba69-e724-4af6-8289-08047e509af1" />
 
 ---
 
